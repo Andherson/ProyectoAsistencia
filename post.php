@@ -1,23 +1,25 @@
 
 <?php
+	
+	require 'funciones.php';
 
+	date_default_timezone_set("America/Bogota");
 	$dato = $_POST;
+
+	$respuesta = registrarEntrada($dato["codigo"],date("y-m-d h:i:s"));
 
 
 ?>
 
-
-
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Document</title>
-
+		<title>Registro de Asistencia</title>
 		<style>
 			body{
 				margin: 0;
 				padding: 0;
-				background: black; 
+				background: black;
 			}
 
 			#usuario{
@@ -30,24 +32,23 @@
 			}
 
 		</style>
-
-
-
 	</head>
 
-	<body>
-		
+	<body>	
 
 		<div id="usuario">
+			<p>
+		        <?php if(!is_null($respuesta)){
+		        		echo "ENTRADA REGISTRADA"."</br>"
+		        			.$respuesta["cod_usuario"]." ".$respuesta["nombre"]." ".$respuesta["cargo"];
+		        		}else echo "Usuario no registrado";
+		        ?>
+	        </p>       
 
-			<p><?php echo $dato["codigo"] ?></p>
-			</br>
-			</br>
 			<a href="index.html">Inicio</a>			
 
 
-		</div>
-		
+		</div>	
 
 		
 	</body>
